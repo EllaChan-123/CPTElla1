@@ -5,7 +5,7 @@ import java.awt.Font;
 
 public class CPTElla{
 	public static void main(String[] args){
-		Console con = new Console("Multiple Choice", 1100, 700);
+		Console con = new Console("Multiple Choice", 1280, 720);
 		boolean blnMain = true;
 		int intChoice;
 		
@@ -16,14 +16,12 @@ public class CPTElla{
 			
 	}
 	public static void MainMenu(boolean blnMain, Console con){
-		//Create the appearence of the main menu
-		Font fntTest = con.loadFont("Oswald.ttf",35);
+		//Load in appearence of the main menu
+		BufferedImage imgMain = con.loadImage("MainScreen.png");
+		//Make sure it displays as long as it is on the main menu
 		while(blnMain == true){
-			//Set background
-			con.setDrawColor(new Color(86, 116, 142));
-			con.fillRect(0, 0, 1100, 700);
-			//Load name of the game
-			
+			con.drawImage(imgMain, 0, 0);
+			con.repaint();
 		}
 		
 	}
