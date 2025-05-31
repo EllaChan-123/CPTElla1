@@ -17,7 +17,7 @@ public class CPTElla{
 	}
 	public static void MainMenu(boolean blnMain, Console con){
 		//Create the appearence of the main menu
-		
+		Font fntTest = con.loadFont("Oswald.ttf",35);
 		while(blnMain == true){
 			//Set background
 			con.setDrawColor(new Color(86, 116, 142));
