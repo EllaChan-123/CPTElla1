@@ -6,23 +6,43 @@ import java.awt.Font;
 public class CPTElla{
 	public static void main(String[] args){
 		Console con = new Console("Multiple Choice", 1280, 720);
-		boolean blnMain = true;
-		int intChoice;
+		int intChoice = 0;
 		
-		//Display the main menu as soon as the game starts
-		if (blnMain == true){
-			MainMenu(blnMain, con);
+		//Run the game as long as the player does not choose to quit
+		while(intChoice != 4){
+			//Display the main menu as soon as the game starts
+			if (intChoice == 0){
+				intChoice = MainMenu(intChoice, con);
+				System.out.println(intChoice);
+				
+				//Clear the screen
+				con.clear();
+				con.setDrawColor(new Color(86,116,142));
+				con.fillRect(0,0,1280,720);
+				
+			//Set up the game if the player chooses "play"
+			}else if(intChoice == 1){
+
+				
+			}
+			
 		}
 			
 	}
-	public static void MainMenu(boolean blnMain, Console con){
+	
+	public static int MainMenu(int intOption, Console con){
 		//Load in appearence of the main menu
 		BufferedImage imgMain = con.loadImage("MainScreen.png");
-		//Make sure it displays as long as it is on the main menu
-		while(blnMain == true){
-			con.drawImage(imgMain, 0, 0);
-			con.repaint();
-		}
+		
+		//Draw the main screen
+		con.drawImage(imgMain, 0, 0);
+		con.println("");
+		intOption = con.readInt();
+
+		return intOption;
+		//Get the user to choose one of the options
 		
 	}
+	
+	//Create method for Playing
 }
