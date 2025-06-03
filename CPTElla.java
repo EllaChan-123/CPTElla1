@@ -23,13 +23,29 @@ public class CPTElla{
 				
 			//Set up the game if the player chooses "play"
 			}else if(intChoice == 1){
-				Font fntTest = con.loadFont("Alkia.ttf", 100);
-				con.setDrawFont(fntTest);
+				//Create the variables needed later in the code
+				String strPlayerName;
+				String strQuiz;
+				
+				//Create the screen for multiple choice
+				con.setDrawColor(new Color(233,238,246));
+				con.fillRoundRect(180,150,900,400,50,50);
+				Font fntChoice = con.loadFont("Alkia.ttf", 60);
+				con.setDrawFont(fntChoice);
 				con.setDrawColor(Color.BLACK);
-				con.drawString("Mmmmm doughnuts", 0,0);
-				con.repaint();
-
-
+				
+				//Ask the player for their name and store it in a variable
+				con.println("What is your name?");
+				strPlayerName = con.readLine();
+				
+				//Print a list of available quizzes
+				TextInputFile QuizesAvailable = new TextInputFile("quizzes.txt");
+				con.println("Here is a list of the available quizes");
+				while (QuizesAvailable.eof()==false){
+					strQuiz = QuizesAvailable.readLine();
+					con.println(strQuiz);
+				}
+			
 
 				
 			}
