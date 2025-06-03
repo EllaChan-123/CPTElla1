@@ -26,6 +26,7 @@ public class CPTElla{
 				//Create the variables needed later in the code
 				String strPlayerName;
 				String strQuiz;
+				double dblScore;
 				
 				//Create the screen for multiple choice
 				con.setDrawColor(new Color(233,238,246));
@@ -37,15 +38,22 @@ public class CPTElla{
 				//Ask the player for their name and store it in a variable
 				con.println("What is your name?");
 				strPlayerName = con.readLine();
-				
+				con.clear();
 				//Print a list of available quizzes
-				TextInputFile QuizesAvailable = new TextInputFile("quizzes.txt");
+				TextInputFile QuizzesAvailable = new TextInputFile("quizzes.txt");
 				con.println("Here is a list of the available quizes");
-				while (QuizesAvailable.eof()==false){
-					strQuiz = QuizesAvailable.readLine();
+				while (QuizzesAvailable.eof()==false){
+					strQuiz = QuizzesAvailable.readLine();
 					con.println(strQuiz);
 				}
-			
+				QuizzesAvailable.close();
+				
+				//Have the player choose a quiz then use a method for the rest of the code
+				con.println("Which quiz do you want to choose? Please type the full name including the .txt");
+				strQuiz = con.readLine();
+				
+				dblScore = PlayGame(strQuiz, con);
+				
 
 				
 			}
@@ -69,4 +77,7 @@ public class CPTElla{
 	}
 	
 	//Create method for Playing
+	public static double PlayGame (String strQuiz, Console con){
+		
+	}
 }
