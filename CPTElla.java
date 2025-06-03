@@ -22,6 +22,12 @@ public class CPTElla{
 				
 			//Set up the game if the player chooses "play"
 			}else if(intChoice == 1){
+				Font fntTest = con.loadFont("Alkia.ttf", 100);
+				con.setDrawFont(fntTest);
+				con.setDrawColor(Color.BLACK);
+				con.drawString("Mmmmm doughnuts", 0,0);
+				con.repaint();
+
 
 				
 			}
