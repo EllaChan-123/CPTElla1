@@ -7,6 +7,7 @@ public class CPTElla{
 	public static void main(String[] args){
 		Console con = new Console("Multiple Choice", 1280, 720);
 		int intChoice = 0;
+		String strName;
 		
 		//Run the game as long as the player does not choose to quit
 		while(intChoice != 4){
@@ -27,6 +28,7 @@ public class CPTElla{
 				con.setDrawColor(Color.BLACK);
 				con.drawString("Mmmmm doughnuts", 0,0);
 				con.repaint();
+
 
 
 				
