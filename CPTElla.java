@@ -27,18 +27,12 @@ public class CPTElla{
 				String strPlayerName;
 				String strQuiz;
 				double dblScore;
-				
-				//Create the screen for multiple choice
-				con.setDrawColor(new Color(233,238,246));
-				con.fillRoundRect(180,150,900,400,50,50);
-				Font fntChoice = con.loadFont("Alkia.ttf", 60);
-				con.setDrawFont(fntChoice);
-				con.setDrawColor(Color.BLACK);
+			
 				
 				//Ask the player for their name and store it in a variable
 				con.println("What is your name?");
 				strPlayerName = con.readLine();
-				con.clear();
+				
 				//Print a list of available quizzes
 				TextInputFile QuizzesAvailable = new TextInputFile("quizzes.txt");
 				con.println("Here is a list of the available quizes");
@@ -78,6 +72,47 @@ public class CPTElla{
 	
 	//Create method for Playing
 	public static double PlayGame (String strQuiz, Console con){
+		int intQnum = 0;
+		double dblScore = 0;
+		double dblRandom;
+		String strQuestions[][];
+		int intColumn;
+
+		TextInputFile ChosenQuiz = new TextInputFile(strQuiz);
 		
+		//Count how many questions are inside the file
+		while(ChosenQuiz.eof() == false){
+			ChosenQuiz.readLine();
+			intQnum = intQnum + 1;
+		}
+		intQnum = intQnum/6;
+		System.out.println(intQnum);
+		ChosenQuiz.close();
+		
+		//Load questions into array with the counted row
+		strQuestions = new String[intQnum][7];
+		TextInputFile Questions = new TextInputFile(strQuiz);
+		int intCount;
+		for(intCount = 0; intCount < intQnum; intCount++){
+			strQuestions[intCount][0] = Questions.readLine();
+			strQuestions[intCount][1] = Questions.readLine();
+			strQuestions[intCount][2] = Questions.readLine();
+			strQuestions[intCount][3] = Questions.readLine();
+			strQuestions[intCount][4] = Questions.readLine();
+			strQuestions[intCount][5] = Questions.readLine();
+			//Randomize a number for the last array, covert it into string and save it
+			dblRandom = Math.random();
+			String strRandom = Double.toString(dblRandom);
+			strQuestions[intCount][6] = strRandom;
+			System.out.println(strQuestions[intCount][6]);
+		}
+		
+		
+
+		
+		
+		
+		return dblScore;
+			
 	}
 }
