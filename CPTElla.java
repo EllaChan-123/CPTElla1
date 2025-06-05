@@ -76,7 +76,8 @@ public class CPTElla{
 		double dblScore = 0;
 		double dblRandom;
 		String strQuestions[][];
-		int intColumn;
+		int intScore;
+		int intAsked;
 
 		TextInputFile ChosenQuiz = new TextInputFile(strQuiz);
 		
@@ -107,8 +108,32 @@ public class CPTElla{
 			System.out.println(strQuestions[intCount][6]);
 		}
 		
+		//Bubble sort
+		int intCount2;
+		int intCount3;
+		String strQuestionsTemp;
+		String strAnswersTemp;
+		String strRandNumTemp;
 		
-
+		for(intCount2=0; intCount2< intQnum; intCount++){
+			for(intCount = 0; intCount < intQnum; intCount++){
+				//Convert the random number to integer and compare
+				if(Integer.parseInt(strQuestions[intCount][6]) > Integer.parseInt(strQuestions[intCount+1][6])){
+					//Swap questions here
+					strQuestionsTemp = strQuestions[intCount][0];
+					strQuestions[intCount][0] = strQuestions[intCount+1][0];
+					strQuestions[intCount + 1][0] = strQuestionsTemp;
+	
+					//Swap answers here
+					for (intCount3 = 1; intCount3 < 6; intCount3++){
+						strAnswersTemp = strQuestions[intCount][intCount3];
+						strQuestions[intCount][intCount3] = strQuestions[intCount + 1][intCount3];
+						strQuestions[intCount+1][intCount3] = strAnswersTemp;
+					}
+				}
+			}
+		}
+		
 		
 		
 		
