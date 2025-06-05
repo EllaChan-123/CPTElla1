@@ -105,8 +105,10 @@ public class CPTElla{
 			dblRandom = Math.random();
 			String strRandom = Double.toString(dblRandom);
 			strQuestions[intCount][6] = strRandom;
+			System.out.println(strQuestions[intCount][0]);
 			System.out.println(strQuestions[intCount][6]);
 		}
+		Questions.close();
 		
 		//Bubble sort
 		int intCount2;
@@ -117,8 +119,8 @@ public class CPTElla{
 		
 		for(intCount2=0; intCount2< intQnum; intCount++){
 			for(intCount = 0; intCount < intQnum; intCount++){
-				//Convert the random number to integer and compare
-				if(Integer.parseInt(strQuestions[intCount][6]) > Integer.parseInt(strQuestions[intCount+1][6])){
+				//Convert the random number to integer and compare;
+				if(Double.parseDouble(strQuestions[intCount][6]) > Double.parseDouble(strQuestions[intCount+1][6])){
 					//Swap questions here
 					strQuestionsTemp = strQuestions[intCount][0];
 					strQuestions[intCount][0] = strQuestions[intCount+1][0];
@@ -130,12 +132,13 @@ public class CPTElla{
 						strQuestions[intCount][intCount3] = strQuestions[intCount + 1][intCount3];
 						strQuestions[intCount+1][intCount3] = strAnswersTemp;
 					}
+					//Swap the random number
+					strRandNumTemp = strQuestions[intCount][6];
+					strQuestions[intCount][6]= strQuestions[intCount+1][6];
+					strQuestions[intCount+1][6] = strRandNumTemp;
 				}
 			}
 		}
-		
-		
-		
 		
 		return dblScore;
 			
