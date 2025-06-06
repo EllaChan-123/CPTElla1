@@ -46,7 +46,9 @@ public class CPTElla{
 				con.println("Which quiz do you want to choose? Please type the full name including the .txt");
 				strQuiz = con.readLine();
 				
-				dblScore = PlayGame(strQuiz, con);
+				dblScore = PlayGame(strQuiz, strPlayerName, con);
+				
+
 				
 
 				
@@ -71,13 +73,11 @@ public class CPTElla{
 	}
 	
 	//Create method for Playing
-	public static double PlayGame (String strQuiz, Console con){
+	public static double PlayGame (String strQuiz, String strName, Console con){
 		int intQnum = 0;
-		double dblScore = 0;
 		double dblRandom;
 		String strQuestions[][];
-		int intScore;
-		int intAsked;
+
 
 		TextInputFile ChosenQuiz = new TextInputFile(strQuiz);
 		
@@ -109,7 +109,7 @@ public class CPTElla{
 			System.out.println(strQuestions[intCount][6]);
 		}
 		Questions.close();
-		
+		System.out.println("finished loading file");
 		//Bubble sort
 		int intCount2;
 		int intCount3;
@@ -117,8 +117,8 @@ public class CPTElla{
 		String strAnswersTemp;
 		String strRandNumTemp;
 		
-		for(intCount2=0; intCount2< intQnum; intCount++){
-			for(intCount = 0; intCount < intQnum; intCount++){
+		for(intCount2=0; intCount2< intQnum - 1; intCount2++){
+			for(intCount = 0; intCount < intQnum - 1; intCount++){
 				//Convert the random number to integer and compare;
 				if(Double.parseDouble(strQuestions[intCount][6]) > Double.parseDouble(strQuestions[intCount+1][6])){
 					//Swap questions here
@@ -139,6 +139,41 @@ public class CPTElla{
 				}
 			}
 		}
+		
+
+		//Gameplay
+		int intCorrect = 0;
+		int intAsked = 0;
+		double dblScore = 0;
+		
+		for(intCount = 0; intCount < intQnum; intCount++){
+			//Display, user interface
+			con.clear();
+			Font fntDisplay = con.loadFont("Alkia.ttf",30);
+			con.setDrawFont(fntDisplay);
+			con.setDrawColor(new Color(207,226,243));
+			con.fillRect(0,0,200, 50);
+			//Load in the four colors image here
+
+			//Text
+			con.setDrawColor(Color.WHITE);
+			con.drawString(strName, 40, 650);
+			con.drawString(strQuiz, 500, 650);
+			
+			//Draw questions and answers
+			fntDisplay = con.loadFont("Alkia.ttf",50);
+			con.drawString(strQuestions[intCount][0], 300, 70);
+			con.drawString(strQuestions[intCount][1], 200, 130);
+			con.drawString(strQuestions[intCount][2], 400, 130);
+			con.drawString(strQuestions[intCount][3], 600, 130);
+			con.drawString(strQuestions[intCount][4], 800, 130);
+			
+			//See if the answer they type in is correct
+		}
+		
+		//Calculating score
+
+		
 		
 		return dblScore;
 			
