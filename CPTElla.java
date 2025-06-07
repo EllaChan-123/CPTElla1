@@ -144,8 +144,8 @@ public class CPTElla{
 		
 
 		//Gameplay
-		int intCorrect = 0;
-		int intAsked = 0;
+		double dblCorrect = 0;
+		double dblAsked = 0;
 		double dblScore = 0;
 		String strAnswer;
 		
@@ -164,11 +164,14 @@ public class CPTElla{
 			con.setDrawColor(Color.WHITE);
 			con.drawString(strName, 40, 650);
 			con.drawString(strQuiz, 500, 650);
-			con.drawString(Integer.toString(intCorrect), 1100, 650);
-			con.drawString("/",1150,650);
-			con.drawString(Integer.toString(intAsked), 1200,650);
+			//number score
+			con.drawString(Double.toString(dblCorrect), 1100, 650);
+			con.drawString("/",1170,650);
+			con.drawString(Double.toString(dblAsked), 1200,650);
+			//Percent score
+			con.drawString(Double.toString(dblScore) + "%", 1000,650);
 			
-			
+					
 			//Draw questions and answers
 			fntDisplay = con.loadFont("Alkia.ttf",70);
 			con.drawString(strQuestions[intCount][0], 410, 70);
@@ -180,16 +183,22 @@ public class CPTElla{
 			//See if the answer they type in is correct
 			con.println("Answer:");
 			strAnswer = con.readLine();
-			intAsked = intAsked + 1;
+			dblAsked = dblAsked + 1;
 			if(strAnswer.equalsIgnoreCase(strQuestions[intCount][5])){
-				intCorrect = intCorrect + 1;
-				con.println("correct");
+				dblCorrect = dblCorrect + 1;
+				con.println("Correct");
 			}else{
-				con.println("incorrect");
+				con.println("Incorrect");
 			}
-			con.sleep(1000);
+			//Find the score in percentage
+			dblScore = Math.round((dblCorrect/dblAsked)*100);
+			System.out.println(dblScore);
+
+			con.sleep(700);
+						
 			
 		}
+		//Redraw score
 		
 		//Calculating score
 
