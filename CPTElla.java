@@ -77,6 +77,8 @@ public class CPTElla{
 		int intQnum = 0;
 		double dblRandom;
 		String strQuestions[][];
+		//Load imaged
+		BufferedImage imgPlay = con.loadImage("ChoiceScreen.png");
 
 
 		TextInputFile ChosenQuiz = new TextInputFile(strQuiz);
@@ -145,6 +147,7 @@ public class CPTElla{
 		int intCorrect = 0;
 		int intAsked = 0;
 		double dblScore = 0;
+		String strAnswer;
 		
 		for(intCount = 0; intCount < intQnum; intCount++){
 			//Display, user interface
@@ -153,22 +156,39 @@ public class CPTElla{
 			con.setDrawFont(fntDisplay);
 			con.setDrawColor(new Color(207,226,243));
 			con.fillRect(0,0,200, 50);
+			
 			//Load in the four colors image here
+			con.drawImage(imgPlay,0,0);
 
 			//Text
 			con.setDrawColor(Color.WHITE);
 			con.drawString(strName, 40, 650);
 			con.drawString(strQuiz, 500, 650);
+			con.drawString(Integer.toString(intCorrect), 1100, 650);
+			con.drawString("/",1150,650);
+			con.drawString(Integer.toString(intAsked), 1200,650);
+			
 			
 			//Draw questions and answers
-			fntDisplay = con.loadFont("Alkia.ttf",50);
-			con.drawString(strQuestions[intCount][0], 300, 70);
-			con.drawString(strQuestions[intCount][1], 200, 130);
-			con.drawString(strQuestions[intCount][2], 400, 130);
-			con.drawString(strQuestions[intCount][3], 600, 130);
-			con.drawString(strQuestions[intCount][4], 800, 130);
+			fntDisplay = con.loadFont("Alkia.ttf",70);
+			con.drawString(strQuestions[intCount][0], 410, 70);
+			con.drawString(strQuestions[intCount][1], 370, 280);
+			con.drawString(strQuestions[intCount][2], 790, 280);
+			con.drawString(strQuestions[intCount][3], 370, 480);
+			con.drawString(strQuestions[intCount][4], 790, 480);
 			
 			//See if the answer they type in is correct
+			con.println("Answer:");
+			strAnswer = con.readLine();
+			intAsked = intAsked + 1;
+			if(strAnswer.equalsIgnoreCase(strQuestions[intCount][5])){
+				intCorrect = intCorrect + 1;
+				con.println("correct");
+			}else{
+				con.println("incorrect");
+			}
+			con.sleep(1000);
+			
 		}
 		
 		//Calculating score
