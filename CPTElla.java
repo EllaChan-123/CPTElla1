@@ -48,10 +48,24 @@ public class CPTElla{
 				
 				dblScore = PlayGame(strQuiz, strPlayerName, con);
 				
-
+				//Write the score along side the name to a leaderboard
+				TextOutputFile Leaderboard = new TextOutputFile("Leaderboard.txt",true);
+				Leaderboard.println(strPlayerName);
+				Leaderboard.println(strQuiz);
+				Leaderboard.println(dblScore);
 				
-
+				Leaderboard.close();
 				
+				//return to main menu
+				intChoice = 0;
+			
+			//Set up the leaderboard viewing	
+			}else if(intChoice == 2){
+				
+				//Load into method
+				Leader(con);
+				
+				//Return to main menu
 			}
 			
 		}
@@ -165,7 +179,7 @@ public class CPTElla{
 			con.drawString(strName, 40, 650);
 			con.drawString(strQuiz, 500, 650);
 			//number score
-			con.drawString(Double.toString(dblCorrect), 1100, 650);
+			con.drawString(Double.toString(dblCorrect), 1120, 650);
 			con.drawString("/",1170,650);
 			con.drawString(Double.toString(dblAsked), 1200,650);
 			//Percent score
@@ -193,18 +207,29 @@ public class CPTElla{
 			//Find the score in percentage
 			dblScore = Math.round((dblCorrect/dblAsked)*100);
 			System.out.println(dblScore);
-
-			con.sleep(700);
-						
 			
+			con.sleep(600);
+								
 		}
-		//Redraw score
-		
-		//Calculating score
-
-		
 		
 		return dblScore;
 			
+	}
+	
+	public static void Leader(Console con){
+		String strLeader[][];
+		int intNum = 0;
+		
+		//Load file
+		TextInputFile InLead = new TextInputFile("Leaderboard.txt");
+		//count the number of names in the leader board file
+
+		while(InLead.eof() == false){
+			InLead.readLine();
+			intNum = intNum + 1;
+		}
+		intNum = intNum/3;
+		System.out.println(intNum);
+		InLead.close();
 	}
 }
