@@ -231,5 +231,39 @@ public class CPTElla{
 		intNum = intNum/3;
 		System.out.println(intNum);
 		InLead.close();
+		
+		//Load questions into array with the counted rows
+		strLeader = new String[intNum][3];
+		InLead = new TextInputFile("Leaderboard.txt");
+		int intCount;
+		
+		//Load the information into arrays
+		for(intCount = 0; intCount < intNum; intCount++){
+			strLeader[intCount][0] = InLead.readLine();
+			strLeader[intCount][1] = InLead.readLine();
+			strLeader[intCount][2] = InLead.readLine();
+			System.out.println(strLeader[intCount][2]);
+		}
+		
+		//Sort the information by the percentage
+		int intCount2;
+		String strNameTemp;
+		String strQuizNameTemp;
+		String strPercentTemp;
+		
+		for(intCount2=0; intCount2< intNum - 1; intCount2++){
+			for(intCount = 0; intCount < intNum - 1; intCount++){
+				//Convert the random number to integer and compare;
+				if(Integer.parseInt(strLeader[intCount][2]) > Integer.parseInt(strLeader[intCount+1][2])){
+					//Swap Names here
+					strNameTemp = strLeader[intCount][0];
+					strLeader[intCount][0] = strLeader[intCount+1][0];
+					strLeader[intCount + 1][0] = strNameTemp;
+				}
+			}
+		}
+		
+		InLead.close();
+		
 	}
 }
