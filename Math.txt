@@ -1,0 +1,55 @@
+What is 4 x 4?
+13
+12
+16
+11
+16
+What is 5!
+120
+25
+80
+160
+120
+What is 6 + 6 x 2?
+16
+24
+28
+17
+16
+What is 11 ^ 2?
+120
+144
+111
+121
+121
+What is 2 ^ 5?
+8
+10
+25
+32
+32
+Which is a natural number?
+-2
+2.2
+0.2
+2
+2
+Which one is a prime number?
+117
+791
+211
+390
+211
+Which one is NOT a prime number?
+571
+303
+419
+101
+303
+What is 6 x 9?
+54
+45
+48
+84
+54
+

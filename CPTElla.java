@@ -9,11 +9,10 @@ public class CPTElla{
 		int intChoice = 0;
 		String strName;
 		
-		//Run the game as long as the player does not choose to quit
+		//Don't quit the game until the users chooses to
 		while(intChoice != 4){
 			//Display the main menu as soon as the game starts
 			if (intChoice == 0){
-				con.clear();
 				intChoice = MainMenu(intChoice, con);
 				System.out.println(intChoice);
 				
@@ -47,6 +46,8 @@ public class CPTElla{
 				con.println("Which quiz do you want to choose? Please type the full name including the .txt");
 				strQuiz = con.readLine();
 				
+				//Instructions
+				con.println("You will be shown a question and four possible answers, please type which one you think is correct into the answer box.");
 				dblScore = PlayGame(strQuiz, strPlayerName, con);
 				
 				//Write the score along side the name to a leaderboard
@@ -67,11 +68,23 @@ public class CPTElla{
 				Leader(con);
 				
 				//Ask if they want to return to the main menu
-				con.println("if you wish to return to the main menu, press 1");
+				con.println("if you wish to return to the main menu, press 0");
 				intChoice = con.readInt();
+				
+			//Set the add quiz option
+			}else if(intChoice == 3){
+				
+				System.out.print("Quiz added");
+				//Load the method for quiz creation
+				CreateQuiz(con);
+				
+				intChoice = 0;
+				
 			}
 			
 		}
+				
+
 			
 	}
 	
@@ -277,15 +290,64 @@ public class CPTElla{
 				}
 			}
 		}
-		
+		con.println("Leaderboard:");
 		//Print out the leaderboard in order
 		for(intCount = 0; intCount < intNum; intCount++){
 			con.println(strLeader[intCount][0]+" - "+strLeader[intCount][1] +" - "+strLeader[intCount][2]);
 		}
+				
 		
+		
+	}
+	
+	//Create a new quiz
+	public static void CreateQuiz(Console con){
+		String strQuizName;
+		String strContinue = "y";
+		String strCreate;
+		int intCount;
+		
+		
+		//Ask user for their quiz name
+		con.println("What is the name of your quiz? (Make sure to add .txt to the end)");
+		strQuizName = con.readLine();
+		
+		//Create/open both files, one for the name of the new quiz, one for the quiz itself
+		TextOutputFile QuizCreation = new TextOutputFile(strQuizName,true);
+		TextOutputFile AddQuiz = new TextOutputFile("quizzes.txt", true);
+		
+		//Append the name of the new quiz to quizzes.txt
+		AddQuiz.println(strQuizName);
+		AddQuiz.close();
+		
+		while(strContinue.equalsIgnoreCase("y")){
+			//Ask for the question
+			con.println("What is your question?");
+			strCreate = con.readLine();
+			QuizCreation.println(strCreate);
 			
+			//Ask for the Choices
+			con.println("There are four options you must input");
+			for(intCount = 1; intCount < 5; intCount++){
+				con.println("Please input option "+intCount);
+				strCreate = con.readLine();
+				QuizCreation.println(strCreate);
+			}
 			
+			//Ask for the correct answer
+			con.println("What is the correct answer");
+			strCreate = con.readLine();
+			QuizCreation.println(strCreate);
+			
+			//Ask the user if they are done adding questions
+			con.println("Do you want to continue adding questions? (y/n)");
+			strContinue = con.readLine();
+			
+		}
+			
+		
 		
 		
 	}
 }
+
