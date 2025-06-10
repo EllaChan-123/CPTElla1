@@ -13,6 +13,7 @@ public class CPTElla{
 		while(intChoice != 4){
 			//Display the main menu as soon as the game starts
 			if (intChoice == 0){
+				con.clear();
 				intChoice = MainMenu(intChoice, con);
 				System.out.println(intChoice);
 				
@@ -20,6 +21,7 @@ public class CPTElla{
 				con.clear();
 				con.setDrawColor(new Color(86,116,142));
 				con.fillRect(0,0,1280,720);
+					
 				
 			//Set up the game if the player chooses "play"
 			}else if(intChoice == 1){
@@ -50,6 +52,12 @@ public class CPTElla{
 				con.println("You will be shown a question and four possible answers, please type which one you think is correct into the answer box.");
 				dblScore = PlayGame(strQuiz, strPlayerName, con);
 				
+				//Give bonus for thsoe who chose their name as statitan
+				if (strPlayerName.equalsIgnoreCase("statitan")){
+					dblScore = dblScore + 5;
+					System.out.println("Bonus added");
+				}
+				
 				//Write the score along side the name to a leaderboard
 				TextOutputFile Leaderboard = new TextOutputFile("Leaderboard.txt",true);
 				Leaderboard.println(strPlayerName);
@@ -79,11 +87,17 @@ public class CPTElla{
 				CreateQuiz(con);
 				
 				intChoice = 0;
-				
+			
+			//Secret menu	
+			}else if(intChoice == 5){
+				con.println("Why did the robber jump in the shower?");
+				con.println("They wanted to make a clean getaway");
+				con.sleep(1200);
+				intChoice = 0;
 			}
 			
 		}
-				
+		System.out.println("Game ended");
 
 			
 	}
@@ -94,11 +108,14 @@ public class CPTElla{
 		
 		//Draw the main screen
 		con.drawImage(imgMain, 0, 0);
+		
+		//Get the user to choose one of the options	
 		con.println("");
 		intOption = con.readInt();
+		
 
 		return intOption;
-		//Get the user to choose one of the options
+
 		
 	}
 	
