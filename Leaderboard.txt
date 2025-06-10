@@ -4,3 +4,6 @@ GreekMythology.txt
 Ella
 GreekMythology.txt
 100.0
+Ella
+Countries.txt
+60.0

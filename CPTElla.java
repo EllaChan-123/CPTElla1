@@ -13,6 +13,7 @@ public class CPTElla{
 		while(intChoice != 4){
 			//Display the main menu as soon as the game starts
 			if (intChoice == 0){
+				con.clear();
 				intChoice = MainMenu(intChoice, con);
 				System.out.println(intChoice);
 				
@@ -65,7 +66,9 @@ public class CPTElla{
 				//Load into method
 				Leader(con);
 				
-				//Return to main menu
+				//Ask if they want to return to the main menu
+				con.println("if you wish to return to the main menu, press 1");
+				intChoice = con.readInt();
 			}
 			
 		}
@@ -188,7 +191,7 @@ public class CPTElla{
 					
 			//Draw questions and answers
 			fntDisplay = con.loadFont("Alkia.ttf",70);
-			con.drawString(strQuestions[intCount][0], 410, 70);
+			con.drawString(strQuestions[intCount][0], 400, 70);
 			con.drawString(strQuestions[intCount][1], 370, 280);
 			con.drawString(strQuestions[intCount][2], 790, 280);
 			con.drawString(strQuestions[intCount][3], 370, 480);
@@ -216,6 +219,7 @@ public class CPTElla{
 			
 	}
 	
+	//Method for the leaderboard
 	public static void Leader(Console con){
 		String strLeader[][];
 		int intNum = 0;
@@ -244,26 +248,44 @@ public class CPTElla{
 			strLeader[intCount][2] = InLead.readLine();
 			System.out.println(strLeader[intCount][2]);
 		}
+		InLead.close();
 		
 		//Sort the information by the percentage
 		int intCount2;
 		String strNameTemp;
-		String strQuizNameTemp;
+		String strQuizTemp;
 		String strPercentTemp;
 		
-		for(intCount2=0; intCount2< intNum - 1; intCount2++){
+		for(intCount2=0; intCount2 < intNum - 1; intCount2++){
 			for(intCount = 0; intCount < intNum - 1; intCount++){
 				//Convert the random number to integer and compare;
-				if(Integer.parseInt(strLeader[intCount][2]) > Integer.parseInt(strLeader[intCount+1][2])){
+				if(Double.parseDouble(strLeader[intCount][2]) < Double.parseDouble(strLeader[intCount+1][2])){
 					//Swap Names here
 					strNameTemp = strLeader[intCount][0];
 					strLeader[intCount][0] = strLeader[intCount+1][0];
 					strLeader[intCount + 1][0] = strNameTemp;
+					//Swap Quiz name here
+					strQuizTemp = strLeader[intCount][1];
+					strLeader[intCount][1] = strLeader[intCount+1][1];
+					strLeader[intCount + 1][1] = strQuizTemp;
+					//Swap Score here
+					strPercentTemp = strLeader[intCount][2];
+					strLeader[intCount][2] = strLeader[intCount+1][2];
+					strLeader[intCount + 1][2] = strPercentTemp;
+					System.out.println(strLeader[intCount][2]);
+					
 				}
 			}
 		}
 		
-		InLead.close();
+		//Print out the leaderboard in order
+		for(intCount = 0; intCount < intNum; intCount++){
+			con.println(strLeader[intCount][0]+" - "+strLeader[intCount][1] +" - "+strLeader[intCount][2]);
+		}
+		
+			
+			
+		
 		
 	}
 }
