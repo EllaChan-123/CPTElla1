@@ -6,16 +6,16 @@ import java.awt.Font;
 public class CPTElla{
 	public static void main(String[] args){
 		Console con = new Console("Multiple Choice", 1280, 720);
-		int intChoice = 0;
+		String strChoice = "M";
 		String strName;
 		
 		//Don't quit the game until the users chooses to
-		while(intChoice != 4){
+		while(!strChoice.equalsIgnoreCase("Q")){
 			//Display the main menu as soon as the game starts
-			if (intChoice == 0){
+			if (strChoice.equalsIgnoreCase("M")){
 				con.clear();
-				intChoice = MainMenu(intChoice, con);
-				System.out.println(intChoice);
+				strChoice = MainMenu(strChoice, con);
+				System.out.println(strChoice);
 				
 				//Clear the screen
 				con.clear();
@@ -24,7 +24,7 @@ public class CPTElla{
 					
 				
 			//Set up the game if the player chooses "play"
-			}else if(intChoice == 1){
+			}else if(strChoice.equalsIgnoreCase("P")){
 				//Create the variables needed later in the code
 				String strPlayerName;
 				String strQuiz;
@@ -48,8 +48,6 @@ public class CPTElla{
 				con.println("Which quiz do you want to choose? Please type the full name including the .txt");
 				strQuiz = con.readLine();
 				
-				//Instructions
-				con.println("You will be shown a question and four possible answers, please type which one you think is correct into the answer box.");
 				dblScore = PlayGame(strQuiz, strPlayerName, con);
 				
 				//Give bonus for thsoe who chose their name as statitan
@@ -67,33 +65,33 @@ public class CPTElla{
 				Leaderboard.close();
 				
 				//return to main menu
-				intChoice = 0;
+				strChoice = "M";
 			
 			//Set up the leaderboard viewing	
-			}else if(intChoice == 2){
+			}else if(strChoice.equalsIgnoreCase("V")){
 				
 				//Load into method
 				Leader(con);
 				
 				//Ask if they want to return to the main menu
-				con.println("if you wish to return to the main menu, press 0");
-				intChoice = con.readInt();
+				con.println("if you wish to return to the main menu, press M");
+				strChoice = con.readLine();
 				
 			//Set the add quiz option
-			}else if(intChoice == 3){
+			}else if(strChoice.equalsIgnoreCase("A")){
 				
 				System.out.print("Quiz added");
 				//Load the method for quiz creation
 				CreateQuiz(con);
 				
-				intChoice = 0;
+				strChoice = "M";
 			
 			//Secret menu	
-			}else if(intChoice == 5){
+			}else if(strChoice.equalsIgnoreCase("S")){
 				con.println("Why did the robber jump in the shower?");
 				con.println("They wanted to make a clean getaway");
 				con.sleep(1200);
-				intChoice = 0;
+				strChoice = "M";
 			}
 			
 		}
@@ -102,7 +100,7 @@ public class CPTElla{
 			
 	}
 	
-	public static int MainMenu(int intOption, Console con){
+	public static String MainMenu(String strOption, Console con){
 		//Load in appearence of the main menu
 		BufferedImage imgMain = con.loadImage("MainScreen.png");
 		
@@ -111,10 +109,10 @@ public class CPTElla{
 		
 		//Get the user to choose one of the options	
 		con.println("");
-		intOption = con.readInt();
+		strOption = con.readLine();
 		
 
-		return intOption;
+		return strOption;
 
 		
 	}
@@ -196,6 +194,8 @@ public class CPTElla{
 		double dblScore = 0;
 		String strAnswer;
 		
+		//Instructions
+		con.println("You will be shown a question and four possible answers, please type which one you think is correct into the answer box.");
 		for(intCount = 0; intCount < intQnum; intCount++){
 			//Display, user interface
 			con.clear();
@@ -241,7 +241,7 @@ public class CPTElla{
 			dblScore = Math.round((dblCorrect/dblAsked)*100);
 			System.out.println(dblScore);
 			
-			con.sleep(600);
+			con.sleep(800);
 								
 		}
 		
@@ -361,6 +361,8 @@ public class CPTElla{
 			strContinue = con.readLine();
 			
 		}
+		//Close file
+		QuizCreation.close();
 			
 		
 		
