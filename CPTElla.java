@@ -103,7 +103,6 @@ public class CPTElla{
 		System.out.println("Game ended");
 		con.closeConsole();
 
-			
 	}
 	
 	public static String MainMenu(String strOption, Console con){
@@ -227,7 +226,7 @@ public class CPTElla{
 					
 			//Draw questions and answers
 			fntDisplay = con.loadFont("Alkia.ttf",70);
-			con.drawString(strQuestions[intCount][0], 400, 70);
+			con.drawString(strQuestions[intCount][0], 370, 70);
 			con.drawString(strQuestions[intCount][1], 370, 280);
 			con.drawString(strQuestions[intCount][2], 790, 280);
 			con.drawString(strQuestions[intCount][3], 370, 480);

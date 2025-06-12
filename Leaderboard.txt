@@ -10,3 +10,6 @@ Countries.txt
 e
 Math.txt
 100.0
+Soph
+Biology.txt
+80.0
