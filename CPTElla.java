@@ -1,3 +1,7 @@
+//Name: Ella
+//Program Name: Multiple Choice
+//Last Modified: June 12, 2025
+//Version: 137.0.7151.70
 import arc.*;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -90,12 +94,14 @@ public class CPTElla{
 			}else if(strChoice.equalsIgnoreCase("S")){
 				con.println("Why did the robber jump in the shower?");
 				con.println("They wanted to make a clean getaway");
-				con.sleep(1200);
+				con.sleep(3000);
 				strChoice = "M";
 			}
 			
 		}
+		
 		System.out.println("Game ended");
+		con.closeConsole();
 
 			
 	}
@@ -364,9 +370,8 @@ public class CPTElla{
 		//Close file
 		QuizCreation.close();
 			
-		
-		
-		
+			
 	}
+	
 }
 
